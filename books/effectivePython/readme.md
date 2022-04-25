@@ -1,0 +1,2 @@
+Bookd:
+https://effectivepython.com/
