@@ -1,8 +1,16 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import config
+
+# from https://www.zlkt.net/book/detail/10/273
+from apps import user
+from apps import book
+from apps import course
 
 app = Flask(__name__)
 app.config.from_object(config)
+app.register_blueprint(book.bp)
+app.register_blueprint(course.bp)
+app.register_blueprint(user.bp)
 
 books = [
     {"id": 1, "name": "sanguo"},
@@ -16,6 +24,12 @@ books = [
 @app.route('/')
 def hello_world():  # put application's code here
     return {"username": "i奥朋友"}
+
+
+@app.route('/about')
+def about():
+    context = {"username":"apple12"}
+    return render_template('about.html', **context)
 
 
 @app.route('/book/<int:book_id>')
