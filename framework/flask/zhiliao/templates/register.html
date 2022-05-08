@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block head %}
+  <script src="{{ url_for('static', filename='jquery/jquery.3.6.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/register.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -12,27 +14,32 @@
     <div class="col">
     </div>
     <div class="col">
-      <form>
+      <form method="post" action="{{ url_for('user.register') }}"  >
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">邮箱</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
           <div id="emailHelp" class="form-text">我们不会把邮箱用于其他用途.</div>
         </div>
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="请输入验证码" aria-label="Recipient's username"
-                 aria-describedby="button-addon2">
+                 aria-describedby="button-addon2" name="captcha">
           <button class="btn btn-outline-secondary" type="button" id="button-addon2">获取验证码</button>
+        </div>
+                <div class="mb-3">
+          <label for="username" class="form-label">用户名</label>
+          <input type="text" class="form-control" id="username" aria-describedby="emailHelp" name="username">
+          <div id="emailHelp" class="form-text">我们不会把邮箱用于其他用途.</div>
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">密码</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <input type="password" class="form-control" id="exampleInputPassword1" name="password">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword2" class="form-label">确认密码</label>
-          <input type="password" class="form-control" id="exampleInputPassword2">
+          <input type="password" class="form-control" id="exampleInputPassword2" name="password_confirm">
         </div>
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-primary">立即登录</button>
+          <button type="submit" class="btn btn-primary">立即注册</button>
         </div>
       </form>
     </div>

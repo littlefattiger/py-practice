@@ -14,16 +14,18 @@
     <div class="col">
     </div>
     <div class="col">
-      <form>
+      <form action="{{ url_for("user.login") }}" method="POST">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">邮箱</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">我们不会把邮箱用于其他用途.</div>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">密码</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <input type="password" class="form-control" id="exampleInputPassword1" name="password">
         </div>
+        {% for message in get_flashed_messages() %}
+          <div class="text-danger">{{ message }}</div>
+        {% endfor %}
         <div class="d-grid gap-2">
           <button type="submit" class="btn btn-primary">立即登录</button>
         </div>
