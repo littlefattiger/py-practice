@@ -1,0 +1,13 @@
+### Flask main knowledge
+---
+- url_for and relation between annotation and function
+- redirect
+- html template, extends. Template filter, jinjia2
+- blueprint
+- flask sqlalchemy
+- cookie and session
+- wtforms to validate posted form there
+- AJAX
+- hook function @before_request @after_process
+- Self written decoractor to verify user
+- md5 hashpassward, flask hashpassword
