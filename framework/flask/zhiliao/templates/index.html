@@ -8,5 +8,23 @@
 {% endblock %}
 
 {% block body %}
-  首页
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-8">
+      <ul>
+        {% for question in questions %}
+          <li>
+          <div> here is a image</div>
+          <div>
+            <div>{{ question.title }}</div>
+            <div>{{ question.content }}</div>
+            <div>{{ question.author.username }}</div>
+          </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col"></div>
+
+  </div>
 {% endblock %}

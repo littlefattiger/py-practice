@@ -9,7 +9,8 @@ bp = Blueprint("qa", __name__, url_prefix="/")
 
 @bp.route("/")
 def index():
-    return render_template('index.html')
+    questions = QuestionModel.query.all()
+    return render_template('index.html', questions=questions)
 
 
 @bp.route("/question/public", methods=["GET", "POST"])
