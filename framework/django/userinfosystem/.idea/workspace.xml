@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c60c4fd6-bd83-4720-b0c7-f5b32ae3cda0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app01/static/js/jquery-3.6.0.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app01/templates/user_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userinfosystem/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/userinfosystem/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userinfosystem/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/userinfosystem/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +82,8 @@
       <option name="presentableId" value="Default" />
       <updated>1652066357324</updated>
       <workItem from="1652066365521" duration="6908000" />
-      <workItem from="1652157434846" duration="3166000" />
+      <workItem from="1652157434846" duration="3850000" />
+      <workItem from="1652420716155" duration="14000" />
     </task>
     <servers />
   </component>
