@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+      .go {
+          width: 100%;
+          min-height: 450px;
+          background-color: #DAE4E4;
+      }
+  </style>
+</head>
+<body>
+<div id="diagramDiv" class="go"></div>
+<div class="content">
+  <div>{{ task_object.title }}</div>
+  <div>{{ task_object.detail }}</div>
+  <div>
+    <input type="button" value="同意" onclick="agree()">
+    <input type="button" value="不同意" onclick="disAgree()">
+  </div>
+</div>
+<script src="/static/go.js"></script>
+<script>
+    var socket;
+    var diagram;
+    var $;
+
+
+    function initGoJs() {
+        $ = go.GraphObject.make;
+        diagram = $(go.Diagram, "diagramDiv", {
+            layout: $(go.TreeLayout, {
+                angle: 0,
+                nodeSpacing: 20,
+                layerSpacing: 70
+            })
+        });
+        diagram.nodeTemplate = $(go.Node, "Auto",
+            $(go.Shape, {
+                    figure: "RoundedRectangle",
+                    fill: 'lighrgray',
+                    stroke: 'lighrgray'
+                }, new go.Binding("figure", "figure")
+                , new go.Binding("fill", "color")
+                , new go.Binding("stroke", "color")),
+            $(go.TextBlock, {margin: 8}, new go.Binding("text", "text"))
+        );
+        diagram.linkTemplate = $(
+            go.Link,
+            {routing: go.Link.Orthogonal},
+            $(go.Shape, {stroke: 'lighrgray'}, new go.Binding("stroke", "link_color")),
+            $(go.Shape, {toArrow: 'OpenTriangle', stroke: 'lighrgray'}, new go.Binding("stroke", "link_color")),
+            $(go.TextBlock, {
+                font: '8pt serif',
+                segmentOffset: new go.Point(0, -10)
+            }, new go.Binding("text", "link_text"))
+        )
+    }
+
+    function initWebSocket() {
+        socket = new WebSocket("ws://127.0.0.1:8000/audit/{{ task_id }}/")
+        socket.onmessage = function (event) {
+
+            let dataDict = JSON.parse(event.data);
+            if (dataDict.msg_type === 1) {
+                diagram.model = new go.TreeModel(dataDict.node_data_array)
+            } else {
+
+
+                var c1 = diagram.model.findNodeDataForKey(dataDict.key)
+                diagram.model.setDataProperty(c1, "color", dataDict.color)
+            }
+            console.log(dataDict)
+
+        }
+
+    }
+
+    function agree() {
+        let info = {user: "{{ user }}", type: "同意"}
+        socket.send(JSON.stringify(info))
+
+    }
+
+    function disAgree() {
+        let info = {user: "{{ user }}", type: "不同意"}
+        socket.send(JSON.stringify(info))
+    }
+
+    initGoJs()
+    initWebSocket()
+</script>
+</body>
+</html>
